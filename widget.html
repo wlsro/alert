@@ -57,7 +57,7 @@
     // --- ГОЛОВНЕ КЕРУВАННЯ ---
     // true  - показати банер на весь екран на всіх сайтах
     // false - повністю сховати віджет (буде 0х0)
-    const isVisible = true; 
+    const isVisible = false; 
 
     // Скрипт автоматично передає команду головному сайту
     if (isVisible) {
@@ -67,9 +67,9 @@
     }
 
     // Функція для кнопки "Закрити", щоб користувач міг прибрати банер
-    function closeModal() {
-      window.parent.postMessage('hide_banner', '*');
-    }
+    // function closeModal() {
+    //   window.parent.postMessage('hide_banner', '*');
+    // }
   </script>
 
 </body>
