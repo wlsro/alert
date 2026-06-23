@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Повноекранне сповіщення</title>
+  <style>
+    /* Робимо фон фрейму затемненим (overlay) */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6); /* Напівпрозорий чорний фон */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    /* Модальне вікно по центру */
+    .modal {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .modal h2 { margin-top: 0; color: #d9534f; }
+    .modal p { color: #333; line-height: 1.5; font-size: 16px; }
+    
+    .close-btn {
+      background: #5cb85c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .close-btn:hover { background: #4cae4c; }
+  </style>
+</head>
+<body>
+
+  <div class="modal">
+    <h2>⚠️ Технічні роботи</h2>
+    <p>Шановні клієнти, сайт буде недоступний з 23:00 до 01:00 у зв'язку з оновленням серверів.</p>
+    <button class="close-btn" onclick="closeModal()">Зрозуміло</button>
+  </div>
+
+  <script>
+    // --- ГОЛОВНЕ КЕРУВАННЯ ---
+    // true  - показати банер на весь екран на всіх сайтах
+    // false - повністю сховати віджет (буде 0х0)
+    const isVisible = true; 
+
+    // Скрипт автоматично передає команду головному сайту
+    if (isVisible) {
+      window.parent.postMessage('show_banner', '*');
+    } else {
+      window.parent.postMessage('hide_banner', '*');
+    }
+
+    // Функція для кнопки "Закрити", щоб користувач міг прибрати банер
+    function closeModal() {
+      window.parent.postMessage('hide_banner', '*');
+    }
+  </script>
+
+</body>
+</html>
